@@ -1,4 +1,4 @@
-package com.manriquetavi.appgestor.presentation.screens.visit
+package com.manriquetavi.appgestor.presentation.screens.profile
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -10,12 +10,12 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 
 @Composable
-fun VisitScreen(navController: NavHostController) {
+fun ProfileScreen(navController: NavHostController) {
     Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        Text(text = "VisitScreen")
+        Text(text = "ProfileScreen")
     }
 }

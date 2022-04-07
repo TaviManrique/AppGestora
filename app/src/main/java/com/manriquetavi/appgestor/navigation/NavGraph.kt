@@ -10,6 +10,7 @@ import androidx.navigation.navArgument
 import com.manriquetavi.appgestor.presentation.screens.login.LoginScreen
 import com.manriquetavi.appgestor.presentation.screens.main.MainScreen
 import com.manriquetavi.appgestor.presentation.screens.map.MapScreen
+import com.manriquetavi.appgestor.presentation.screens.profile.ProfileScreen
 import com.manriquetavi.appgestor.presentation.screens.register.RegisterScreen
 import com.manriquetavi.appgestor.presentation.screens.report.ReportScreen
 import com.manriquetavi.appgestor.presentation.screens.splash.SplashScreen
@@ -20,7 +21,7 @@ import com.manriquetavi.appgestor.presentation.screens.welcome.WelcomeScreen
 fun SetUpNavGraph(navController: NavHostController) {
     NavHost(
         navController = navController,
-        startDestination = Screen.Splash.route
+        startDestination = Screen.Main.route
     ) {
         composable(route = Screen.Splash.route) {
             SplashScreen(navController = navController)
@@ -36,6 +37,9 @@ fun SetUpNavGraph(navController: NavHostController) {
         }
         composable(route = Screen.Main.route) {
             MainScreen(navController = navController)
+        }
+        composable(route = Screen.Profile.route) {
+            ProfileScreen(navController = navController)
         }
         composable(
             route = Screen.Map.route,

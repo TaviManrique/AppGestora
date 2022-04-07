@@ -102,6 +102,12 @@ dependencies {
     // System UI Controller - Accompanist
     implementation "com.google.accompanist:accompanist-systemuicontroller:$accompanist_version"
 
+    // Splash API
+    implementation 'androidx.core:core-splashscreen:1.0.0-beta02'
+
+    //Icons
+    implementation "androidx.compose.material:material-icons-extended:$compose_version"
+
     // Palette API
     implementation "androidx.palette:palette-ktx:1.0.0"
 
