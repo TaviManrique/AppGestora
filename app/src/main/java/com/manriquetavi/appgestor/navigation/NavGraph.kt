@@ -61,6 +61,5 @@ fun SetUpNavGraph(navController: NavHostController) {
         ) {
             ReportScreen(navController = navController)
         }
-        
     }
 }
