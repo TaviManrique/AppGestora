@@ -16,6 +16,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.manriquetavi.appgestor.R
+import com.manriquetavi.appgestor.navigation.Screen
 import com.manriquetavi.appgestor.presentation.components.PasswordInputField
 import com.manriquetavi.appgestor.presentation.components.UsernameInputField
 
@@ -39,7 +40,7 @@ fun LoginScreen(
             Image(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(300.dp),
+                    .height(150.dp),
                 painter = painterResource(id = R.drawable.img1),
                 contentDescription = "Image LoginScreen")
             //Text title
@@ -66,7 +67,7 @@ fun LoginScreen(
                 modifier = Modifier
                     .padding(vertical = 16.dp, horizontal = 16.dp)
                     .fillMaxWidth(),
-                onClick = { /*TODO try enter to MainScreen*/ },
+                onClick = { navController.navigate(Screen.Main.route) },
                 shape = RoundedCornerShape(16.dp)
             ) {
                 Text(

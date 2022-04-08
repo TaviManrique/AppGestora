@@ -21,7 +21,7 @@ import com.manriquetavi.appgestor.presentation.screens.welcome.WelcomeScreen
 fun SetUpNavGraph(navController: NavHostController) {
     NavHost(
         navController = navController,
-        startDestination = Screen.Main.route
+        startDestination = Screen.Login.route
     ) {
         composable(route = Screen.Splash.route) {
             SplashScreen(navController = navController)

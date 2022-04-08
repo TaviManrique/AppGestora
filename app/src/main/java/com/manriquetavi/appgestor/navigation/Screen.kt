@@ -16,12 +16,12 @@ sealed class Screen(val route: String) {
         }
     }
     object Visit: Screen("visit_screen/{storeId}"){
-        fun passStoreId(storeId: Int): String {
+        fun passStoreIdToVisit(storeId: Int): String {
             return "visit_screen/$storeId"
         }
     }
     object Report: Screen("report_screen/{storeId}") {
-        fun passStoreId(storeId: Int): String {
+        fun passStoreIdToReport(storeId: Int): String {
             return "report_screen/$storeId"
         }
     }
