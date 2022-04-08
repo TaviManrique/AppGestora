@@ -43,9 +43,14 @@ fun SetUpNavGraph(navController: NavHostController) {
         }
         composable(
             route = Screen.Map.route,
-            arguments = listOf(navArgument("storeId") {
-                type = NavType.IntType
-            })
+            arguments = listOf(
+                navArgument("latitude") {
+                    type = NavType.FloatType
+                },
+                navArgument("longitude") {
+                    type = NavType.FloatType
+                }
+            )
         ) {
             MapScreen(navController = navController)
         }

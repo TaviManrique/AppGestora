@@ -111,6 +111,10 @@ dependencies {
     // Palette API
     implementation "androidx.palette:palette-ktx:1.0.0"
 
+    //Map
+    implementation "com.google.maps.android:maps-compose:1.0.0"
+    implementation "com.google.android.gms:play-services-maps:18.0.2"
+
     // Testing
     androidTestImplementation "androidx.test:runner:1.4.0"
     androidTestImplementation "androidx.test:rules:1.4.0"

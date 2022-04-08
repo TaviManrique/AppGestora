@@ -32,9 +32,11 @@ fun MainScreen(
     val stores = listOf(
         Store(
             id = 1,
-            name = "Metro",
+            name = "Plaza Vea",
             code = 1001,
             address = "C. Lima 123",
+            latitude = -12.115225,
+            longitude = -76.9928401,
             products = listOf(
                 Product(
                     name = "Casaca Tienda 1",
@@ -55,9 +57,11 @@ fun MainScreen(
         ),
         Store(
             id = 2,
-            name = "Tottus",
+            name = "Metro",
             code = 1002,
             address = "Av. Javier Prado 2345",
+            latitude = -12.0826094,
+            longitude = -77.0361253,
             products = listOf(
                 Product(
                     name = "Casaca Tienda 2",
@@ -81,6 +85,8 @@ fun MainScreen(
             name = "Plaza Vea",
             code = 1003,
             address = "Av. Oscar Benavides 1234",
+            latitude = -12.091994,
+            longitude = -77.0440453,
             products = listOf(
                 Product(
                     name = "Casaca Tienda 2",
@@ -156,7 +162,13 @@ fun StoreItem(
                 modifier = Modifier
                     .padding(10.dp)
                     .size(80.dp)
-                    .clickable { navController.navigate(Screen.Map.passStoreId(storeId = store.id)) },
+                    .clickable {
+                        navController.navigate(
+                            Screen.Map.passLatitudeAndLongitude(
+                                latitude = store.latitude,
+                                longitude = store.longitude
+                            )
+                        ) },
                 shape = RectangleShape,
                 elevation = 4.dp
             ) {

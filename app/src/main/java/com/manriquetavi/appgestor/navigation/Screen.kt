@@ -7,9 +7,12 @@ sealed class Screen(val route: String) {
     object Register: Screen("register_screen")
     object Main: Screen("main_screen")
     object Profile: Screen("profile_screen")
-    object Map: Screen("map_screen/{storeId}") {
-        fun passStoreId(storeId: Int): String {
-            return "map_screen/$storeId"
+    object Map: Screen("map_screen/{latitude}/{longitude}") {
+        fun passLatitudeAndLongitude(
+            latitude: Double,
+            longitude: Double
+        ): String {
+            return "map_screen/$latitude/$longitude"
         }
     }
     object Visit: Screen("visit_screen/{storeId}"){
