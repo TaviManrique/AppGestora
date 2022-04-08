@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "159908692484",
+    "project_id": "appgestor-5b9ba",
+    "storage_bucket": "appgestor-5b9ba.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:159908692484:android:0977691c45083201832b51",
+        "android_client_info": {
+          "package_name": "com.manriquetavi.appgestor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "159908692484-pk27rqu0cua0od85pu1pqjqqp5ij3mba.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC8sMi99AIh5v9fz_vK_Fq3DXFPZMW3ahM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "159908692484-pk27rqu0cua0od85pu1pqjqqp5ij3mba.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

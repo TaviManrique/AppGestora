@@ -18,6 +18,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.manriquetavi.appgestor.R
@@ -29,8 +32,10 @@ import com.manriquetavi.appgestor.ui.theme.SMALL_PADDING
 
 @Composable
 fun MainScreen(
-    navController: NavHostController
+    navController: NavHostController,
+    mainViewModel: MainViewModel = hiltViewModel()
 ) {
+    /*
     val stores = listOf(
         Store(
             id = 1,
@@ -108,6 +113,9 @@ fun MainScreen(
             )
         ),
     )
+    */
+    val state = mainViewModel.state.value
+    val stores = state.stores
     Scaffold(
         topBar ={
             MainTopBar(
@@ -129,7 +137,7 @@ fun MainContent(
     stores: List<Store>,
     navController: NavHostController
 ) {
-    val currentSelectedStore = remember { mutableStateOf(stores[0])}
+    val currentSelectedStore = remember { mutableStateOf(Store())}
     val showDialog = remember { mutableStateOf(false) }
     if (showDialog.value) AlertDialogScreen(
         store = currentSelectedStore,
@@ -160,7 +168,7 @@ fun MainContent(
                     .clickable {
                         currentSelectedStore.value = store
                         showDialog.value = true
-                               },
+                    },
                 shape = RoundedCornerShape(corner = CornerSize(16.dp)),
                 elevation = 4.dp
             ) {
@@ -175,8 +183,8 @@ fun MainContent(
                             .clickable {
                                 navController.navigate(
                                     Screen.Map.passLatitudeAndLongitude(
-                                        latitude = store.latitude,
-                                        longitude = store.longitude
+                                        latitude = store.latitude.toDouble(),
+                                        longitude = store.longitude.toDouble()
                                     )
                                 )
                             },

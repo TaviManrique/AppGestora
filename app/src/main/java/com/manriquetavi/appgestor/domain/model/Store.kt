@@ -6,11 +6,11 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "store_table")
 data class Store(
     @PrimaryKey(autoGenerate = false)
-    val id: Int,
-    val name: String,
-    val code: Int,
-    val address: String,
-    val latitude: Double,
-    val longitude: Double,
-    val products: List<Product>
+    val id: Int = 0,
+    val name: String = "",
+    val code: Int = 0,
+    val address: String = "",
+    val latitude: String = "",
+    val longitude: String = "",
+    val products: List<Product> = emptyList<Product>()
 )

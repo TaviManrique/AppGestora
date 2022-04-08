@@ -4,6 +4,7 @@ plugins {
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
     id 'kotlinx-serialization'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -74,6 +75,11 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0")
 
+    // Coroutines
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2'
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.5.2"
+
     // Paging 3.0
     implementation 'androidx.paging:paging-compose:1.0.0-alpha14'
 
@@ -115,7 +121,19 @@ dependencies {
     implementation "com.google.maps.android:maps-compose:1.0.0"
     implementation "com.google.android.gms:play-services-maps:18.0.2"
 
-    // Testing
+    //Firebase
+    // Import the Firebase BoM
+    implementation platform('com.google.firebase:firebase-bom:29.0.3')
+    //Firebase Authentication and Cloud Firestore
+    implementation 'com.google.firebase:firebase-auth-ktx'
+    implementation 'com.google.firebase:firebase-firestore-ktx'
+    implementation 'com.firebaseui:firebase-ui-auth:7.2.0'
+
+    //Tasks google services
+    implementation 'com.google.android.gms:play-services-base:18.0.1'
+    implementation 'com.google.android.gms:play-services-tasks:18.0.1'
+
+    //Testing
     androidTestImplementation "androidx.test:runner:1.4.0"
     androidTestImplementation "androidx.test:rules:1.4.0"
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

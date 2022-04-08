@@ -37,7 +37,7 @@ fun ProfileScreen(
 }
 
 fun signOff(navController: NavHostController) {
-    TODO("Not yet implemented")
+    navController.popBackStack()
 }
 
 @Composable

@@ -46,8 +46,8 @@ fun StoreItem(
                     .clickable {
                         navController.navigate(
                             Screen.Map.passLatitudeAndLongitude(
-                                latitude = store.latitude,
-                                longitude = store.longitude
+                                latitude = store.latitude.toDouble(),
+                                longitude = store.longitude.toDouble()
                             )
                         )
                     },
