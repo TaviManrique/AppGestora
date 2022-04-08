@@ -1,4 +1,4 @@
-package com.manriquetavi.appgestor.presentation.screens.main
+package com.manriquetavi.appgestor.presentation.screens.visit
 
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
@@ -6,15 +6,15 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.manriquetavi.appgestor.domain.model.Result
+import com.manriquetavi.appgestor.presentation.screens.main.MainState
 import com.manriquetavi.appgestor.repository.StoreRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
-
 @HiltViewModel
-class MainViewModel @Inject constructor(
+class VisitViewModel @Inject constructor(
     private val repository: StoreRepository
 ): ViewModel() {
 

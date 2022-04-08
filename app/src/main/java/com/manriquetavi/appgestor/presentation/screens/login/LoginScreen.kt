@@ -37,74 +37,78 @@ fun LoginScreen(
     val textPassword = rememberSaveable { mutableStateOf("") }
     val isVisible = rememberSaveable { mutableStateOf(false) }
 
-    Surface(
-        modifier = Modifier.fillMaxSize()
+    Scaffold(
+        topBar = {}
     ) {
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Top
+        Surface(
+            modifier = Modifier.fillMaxSize()
         ) {
-            //Image Login
-            Image(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(150.dp),
-                painter = painterResource(id = R.drawable.img1),
-                contentDescription = "Image LoginScreen")
-            //Text title
-            Text(
-                modifier = Modifier.padding(bottom = 32.dp),
-                text = "App Gestor",
-                style = MaterialTheme.typography.h3,
-            )
-            //InputField Username
-            UsernameInputField(
-                modifier = Modifier.padding(horizontal = 16.dp),
-                text = textUsername,
-                focusManager = focusManager
-            )
-            //InputField PasswordField
-            PasswordInputField(
-                modifier = Modifier.padding(horizontal = 16.dp),
-                text = textPassword,
-                focusManager = focusManager,
-                isVisible = isVisible
-            )
-            //Bottom to enter
-            Button(
-                modifier = Modifier
-                    .padding(vertical = 16.dp, horizontal = 16.dp)
-                    .fillMaxWidth(),
-                onClick = {
-                    loginViewModel.signInWithEmailAndPassword(
-                        textUsername.value.trim(),
-                        textPassword.value.trim()
-                    ) {
-                        textUsername.value = ""
-                        textPassword.value = ""
-                        navController.popBackStack()
-                        navController.navigate(Screen.Main.route)
-                    }
-                },
-                shape = RoundedCornerShape(16.dp)
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Top
             ) {
+                //Image Login
+                Image(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(150.dp),
+                    painter = painterResource(id = R.drawable.img1),
+                    contentDescription = "Image LoginScreen")
+                //Text title
                 Text(
-                    modifier = Modifier.padding(8.dp),
-                    text = "Login"
+                    modifier = Modifier.padding(bottom = 12.dp),
+                    text = "App Gestor",
+                    style = MaterialTheme.typography.h4,
                 )
-            }
-            //Bottom to register
-            OutlinedButton(
-                modifier = Modifier
-                    .padding(vertical = 8.dp, horizontal = 16.dp)
-                    .fillMaxWidth(),
-                onClick = {  },
-                shape = RoundedCornerShape(16.dp)
-            ) {
-                Text(
-                    modifier = Modifier.padding(8.dp),
-                    text = "Register"
+                //InputField Username
+                UsernameInputField(
+                    modifier = Modifier.padding(horizontal = 16.dp),
+                    text = textUsername,
+                    focusManager = focusManager
                 )
+                //InputField PasswordField
+                PasswordInputField(
+                    modifier = Modifier.padding(horizontal = 16.dp),
+                    text = textPassword,
+                    focusManager = focusManager,
+                    isVisible = isVisible
+                )
+                //Bottom to enter
+                Button(
+                    modifier = Modifier
+                        .padding(vertical = 16.dp, horizontal = 16.dp)
+                        .fillMaxWidth(),
+                    onClick = {
+                        loginViewModel.signInWithEmailAndPassword(
+                            textUsername.value.trim(),
+                            textPassword.value.trim()
+                        ) {
+                            textUsername.value = ""
+                            textPassword.value = ""
+                            navController.popBackStack()
+                            navController.navigate(Screen.Main.route)
+                        }
+                    },
+                    shape = RoundedCornerShape(16.dp)
+                ) {
+                    Text(
+                        modifier = Modifier.padding(8.dp),
+                        text = "Login"
+                    )
+                }
+                //Bottom to register
+                OutlinedButton(
+                    modifier = Modifier
+                        .padding(vertical = 8.dp, horizontal = 16.dp)
+                        .fillMaxWidth(),
+                    onClick = {  },
+                    shape = RoundedCornerShape(16.dp)
+                ) {
+                    Text(
+                        modifier = Modifier.padding(8.dp),
+                        text = "Register"
+                    )
+                }
             }
         }
     }

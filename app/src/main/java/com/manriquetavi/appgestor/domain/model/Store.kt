@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "store_table")
 data class Store(
     @PrimaryKey(autoGenerate = false)
-    val id: Int = 0,
+    val id: String = "",
     val name: String = "",
     val code: Int = 0,
     val address: String = "",

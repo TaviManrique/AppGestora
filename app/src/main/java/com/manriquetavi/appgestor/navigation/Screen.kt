@@ -15,13 +15,17 @@ sealed class Screen(val route: String) {
             return "map_screen/$latitude/$longitude"
         }
     }
-    object Visit: Screen("visit_screen/{storeId}"){
-        fun passStoreIdToVisit(storeId: Int): String {
-            return "visit_screen/$storeId"
+    object Visit: Screen("visit_screen/{storeName}/{storeAddress}/{storeId}"){
+        fun passNameAndAddressToVisit(
+            storeName: String,
+            storeAddress: String,
+            storeId: String
+        ): String {
+            return "visit_screen/$storeName/$storeAddress/$storeId"
         }
     }
     object Report: Screen("report_screen/{storeId}") {
-        fun passStoreIdToReport(storeId: Int): String {
+        fun passStoreIdToReport(storeId: String): String {
             return "report_screen/$storeId"
         }
     }

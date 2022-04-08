@@ -1,5 +1,6 @@
 package com.manriquetavi.appgestor.presentation.screens.visit
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -12,16 +13,22 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.manriquetavi.appgestor.R
+import com.manriquetavi.appgestor.domain.model.Store
 import com.manriquetavi.appgestor.navigation.Screen
+import kotlin.math.log
 
 @Composable
 fun VisitScreen(
-    navController: NavHostController
+    navController: NavHostController,
+    visitViewModel: VisitViewModel = hiltViewModel()
 ) {
-    val storeId = navController.currentBackStackEntry?.arguments?.getInt("storeId")
+    val storeName = navController.currentBackStackEntry?.arguments?.getString("storeName")
+    val storeAddress = navController.currentBackStackEntry?.arguments?.getString("storeAddress")
+    val storeId = navController.currentBackStackEntry?.arguments?.getString("storeId")
 
     Scaffold(
         topBar = { VisitTopBar(navController = navController ) }
@@ -29,6 +36,8 @@ fun VisitScreen(
         storeId?.let { storeId ->
             ContentVisitScreen(
                 navController = navController,
+                storeName = storeName,
+                storeAddress = storeAddress,
                 storeId = storeId
             )
         }
@@ -36,7 +45,7 @@ fun VisitScreen(
 }
 
 @Composable
-fun ContentVisitScreen(navController: NavHostController, storeId: Int) {
+fun ContentVisitScreen(navController: NavHostController, storeName: String?, storeAddress: String?, storeId: String) {
     Column(
         modifier = Modifier
             .padding(horizontal = 16.dp)
@@ -47,7 +56,7 @@ fun ContentVisitScreen(navController: NavHostController, storeId: Int) {
         //Store Name
         Text(
             modifier = Modifier.padding(vertical = 8.dp),
-            text = "Name Name Name Name Name Name Name Name Name Name",
+            text = storeName.toString(),
             style = MaterialTheme.typography.h4,
             textAlign = TextAlign.Center,
             maxLines = 2,
@@ -56,13 +65,12 @@ fun ContentVisitScreen(navController: NavHostController, storeId: Int) {
         //Store Address
         Text(
             modifier = Modifier.padding(vertical = 8.dp),
-            text = "Address Address Address Address Address Address",
+            text = storeAddress.toString(),
             style = MaterialTheme.typography.h6,
             textAlign = TextAlign.Center,
             maxLines = 2,
             overflow = TextOverflow.Ellipsis,
         )
-
 
         Image(
             modifier = Modifier
@@ -84,10 +92,4 @@ fun ContentVisitScreen(navController: NavHostController, storeId: Int) {
             )
         }
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun ContentVisitScreenPreview() {
-    ContentVisitScreen(navController = rememberNavController(), 1)
 }

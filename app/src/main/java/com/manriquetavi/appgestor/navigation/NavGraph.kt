@@ -56,16 +56,24 @@ fun SetUpNavGraph(navController: NavHostController) {
         }
         composable(
             route = Screen.Visit.route,
-            arguments = listOf(navArgument("storeId") {
-                type = NavType.IntType
-            })
+            arguments = listOf(
+                navArgument("storeName") {
+                    type = NavType.StringType
+                },
+                navArgument("storeAddress") {
+                    type = NavType.StringType
+                },
+                navArgument("storeId") {
+                    type = NavType.StringType
+                },
+            )
         ) {
             VisitScreen(navController = navController)
         }
         composable(
             route = Screen.Report.route,
             arguments = listOf(navArgument("storeId") {
-                type = NavType.IntType
+                type = NavType.StringType
             })
         ) {
             ReportScreen(navController = navController)

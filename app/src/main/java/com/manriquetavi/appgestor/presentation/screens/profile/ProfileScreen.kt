@@ -17,6 +17,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.manriquetavi.appgestor.R
+import com.manriquetavi.appgestor.navigation.Screen
 import com.manriquetavi.appgestor.ui.theme.topAppBarBackgroundColor
 
 @Composable
@@ -36,8 +37,11 @@ fun ProfileScreen(
     }
 }
 
+//Have to logout Firebase and go out app
 fun signOff(navController: NavHostController) {
     navController.popBackStack()
+    navController.popBackStack()
+    navController.navigate(Screen.Login.route)
 }
 
 @Composable
