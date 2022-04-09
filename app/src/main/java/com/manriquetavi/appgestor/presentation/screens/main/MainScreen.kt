@@ -9,6 +9,7 @@ import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -24,6 +25,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.manriquetavi.appgestor.R
+import com.manriquetavi.appgestor.domain.model.DataOrException
 import com.manriquetavi.appgestor.domain.model.Product
 import com.manriquetavi.appgestor.domain.model.Store
 import com.manriquetavi.appgestor.navigation.Screen
@@ -114,8 +116,9 @@ fun MainScreen(
         ),
     )
     */
-    val state = mainViewModel.state.value
-    val stores = state.stores
+    //val stores = mainViewModel.allStores.collectAsState().value.data
+    val stores = mainViewModel.getAllStores.invoke().collectAsState(initial = DataOrException()).value.data
+
     Scaffold(
         topBar ={
             MainTopBar(
@@ -125,10 +128,12 @@ fun MainScreen(
             )
         }
     ) {
-        MainContent(
-            stores,
-            navController
-        )
+        if (!stores.isNullOrEmpty()) {
+            MainContent(
+                stores,
+                navController
+            )
+        }
     }
 }
 
@@ -183,8 +188,8 @@ fun MainContent(
                             .clickable {
                                 navController.navigate(
                                     Screen.Map.passLatitudeAndLongitude(
-                                        latitude = store.latitude.toDouble(),
-                                        longitude = store.longitude.toDouble()
+                                        latitude = store.latitude!!.toDouble(),
+                                        longitude = store.longitude!!.toDouble()
                                     )
                                 )
                             },
@@ -200,7 +205,7 @@ fun MainContent(
                         modifier = Modifier.padding(4.dp)
                     ) {
                         Text(
-                            text = store.name,
+                            text = store.name!!,
                             style = MaterialTheme.typography.h6,
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis
@@ -212,7 +217,7 @@ fun MainContent(
                             overflow = TextOverflow.Ellipsis
                         )
                         Text(
-                            text = store.address,
+                            text = store.address!!,
                             style = MaterialTheme.typography.caption,
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis

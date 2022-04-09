@@ -1,6 +1,5 @@
 package com.manriquetavi.appgestor.presentation.screens.visit
 
-import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -11,20 +10,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
+
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
+
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
+
 import com.manriquetavi.appgestor.R
-import com.manriquetavi.appgestor.domain.model.Store
+
 import com.manriquetavi.appgestor.navigation.Screen
 import kotlin.math.log
 
 @Composable
 fun VisitScreen(
-    navController: NavHostController,
-    visitViewModel: VisitViewModel = hiltViewModel()
+    navController: NavHostController
 ) {
     val storeName = navController.currentBackStackEntry?.arguments?.getString("storeName")
     val storeAddress = navController.currentBackStackEntry?.arguments?.getString("storeAddress")

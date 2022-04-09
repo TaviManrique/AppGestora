@@ -46,8 +46,8 @@ fun StoreItem(
                     .clickable {
                         navController.navigate(
                             Screen.Map.passLatitudeAndLongitude(
-                                latitude = store.latitude.toDouble(),
-                                longitude = store.longitude.toDouble()
+                                latitude = store.latitude!!.toDouble(),
+                                longitude = store.longitude!!.toDouble()
                             )
                         )
                     },
@@ -63,7 +63,7 @@ fun StoreItem(
                 modifier = Modifier.padding(4.dp)
             ) {
                 Text(
-                    text = store.name,
+                    text = store.name!!,
                     style = MaterialTheme.typography.h6,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
@@ -75,7 +75,7 @@ fun StoreItem(
                     overflow = TextOverflow.Ellipsis
                 )
                 Text(
-                    text = store.address,
+                    text = store.address!!,
                     style = MaterialTheme.typography.caption,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
