@@ -26,12 +26,17 @@ import com.manriquetavi.appgestor.navigation.Screen
 fun StoreItem(
     store: Store,
     navController: NavHostController,
+    currentSelectedStore: MutableState<Store>,
+    showDialog: MutableState<Boolean>
 ) {
     Card(
         modifier = Modifier
             .height(120.dp)
             .fillMaxWidth()
-            .clickable {  },
+            .clickable {
+                currentSelectedStore.value = store
+                showDialog.value = true
+            },
         shape = RoundedCornerShape(corner = CornerSize(16.dp)),
         elevation = 4.dp
     ) {

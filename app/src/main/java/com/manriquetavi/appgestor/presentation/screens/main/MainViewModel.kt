@@ -1,8 +1,10 @@
 package com.manriquetavi.appgestor.presentation.screens.main
 
+import androidx.compose.runtime.State
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.manriquetavi.appgestor.domain.model.DataOrException
+import com.manriquetavi.appgestor.domain.model.Response
 import com.manriquetavi.appgestor.domain.model.Store
 import com.manriquetavi.appgestor.domain.use_cases.UseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -13,39 +15,20 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    useCases: UseCases
+    private val useCases: UseCases
 ): ViewModel() {
-
-    val getAllStores = useCases.getAllStoresUseCase
-    /*
-    private val _allStores: MutableStateFlow<DataOrException<List<Store>, Boolean, Exception>> = MutableStateFlow(DataOrException())
-    val allStores: StateFlow<DataOrException<List<Store>, Boolean, Exception>> = _allStores
-
-    private fun getAllStores() {
-        viewModelScope.launch {
-            _allStores.value.loading = true
-            useCases.getAllStoresUseCase().collect {
-                _allStores.value = it
-            }
-            if(!_allStores.value.data.isNullOrEmpty()) _allStores.value.loading = false
-        }
-    }*/
-
-    /*
-    private val _state: MutableState<MainState> = mutableStateOf(MainState())
-    val state: State<MainState> = _state
+    private val _storesState = mutableStateOf<Response<List<Store>>>(Response.Loading)
+    val storesState: State<Response<List<Store>>> = _storesState
 
     init {
-        getAllStores()
+        getBooks()
     }
 
-    fun getAllStores() {
-        repository.getAllStores().onEach { result ->
-            when(result) {
-                is Result.Error -> _state.value = MainState(error = result.message ?: "Error unknown")
-                is Result.Loading -> _state.value = MainState(isLoading = true)
-                is Result.Success -> _state.value = MainState(stores = result.data ?: emptyList())
+    private fun getBooks() {
+        viewModelScope.launch {
+            useCases.getAllStoresUseCase().collect {
+                _storesState.value = it
             }
-        }.launchIn(viewModelScope)
-    }*/
+        }
+    }
 }

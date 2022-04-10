@@ -1,6 +1,5 @@
 package com.manriquetavi.appgestor.di
 
-import com.google.firebase.firestore.FirebaseFirestore
 import com.manriquetavi.appgestor.data.repository.Repository
 import com.manriquetavi.appgestor.domain.use_cases.UseCases
 import com.manriquetavi.appgestor.domain.use_cases.get_all_stores.GetAllStoresUseCase
