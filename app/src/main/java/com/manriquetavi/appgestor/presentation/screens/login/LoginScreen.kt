@@ -54,6 +54,7 @@ fun LoginScreen(
                 //Image Login
                 Image(
                     modifier = Modifier
+                        .padding(top = 40.dp)
                         .fillMaxWidth()
                         .height(150.dp),
                     painter = painterResource(id = R.drawable.img1),

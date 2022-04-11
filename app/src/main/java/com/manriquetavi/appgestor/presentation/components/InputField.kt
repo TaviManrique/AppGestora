@@ -13,6 +13,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.focus.FocusManager
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
@@ -56,7 +57,8 @@ fun UsernameInputField(
         ),
         keyboardActions = KeyboardActions(
             onNext = {
-                focusManager?.clearFocus()
+                //focusManager?.clearFocus()
+                focusManager?.moveFocus(FocusDirection.Down)
             }
         ),
         colors = TextFieldDefaults.textFieldColors(
