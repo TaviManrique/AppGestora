@@ -15,7 +15,9 @@ import com.manriquetavi.appgestor.presentation.screens.report.ReportScreen
 import com.manriquetavi.appgestor.presentation.screens.splash.SplashScreen
 import com.manriquetavi.appgestor.presentation.screens.visit.VisitScreen
 import com.manriquetavi.appgestor.presentation.screens.welcome.WelcomeScreen
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
+@ExperimentalCoroutinesApi
 @Composable
 fun SetUpNavGraph(navController: NavHostController) {
     NavHost(

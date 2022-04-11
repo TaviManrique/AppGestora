@@ -8,11 +8,13 @@ import com.manriquetavi.appgestor.domain.model.Response
 import com.manriquetavi.appgestor.domain.model.Store
 import com.manriquetavi.appgestor.domain.use_cases.UseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
+@ExperimentalCoroutinesApi
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val useCases: UseCases

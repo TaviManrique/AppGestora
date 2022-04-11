@@ -8,7 +8,9 @@ import androidx.navigation.compose.rememberNavController
 import com.manriquetavi.appgestor.navigation.SetUpNavGraph
 import com.manriquetavi.appgestor.ui.theme.AppGestorTheme
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
+@ExperimentalCoroutinesApi
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
