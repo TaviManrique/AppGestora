@@ -12,7 +12,7 @@ fun MainTopBar(onProfileClicked: () -> Unit) {
     TopAppBar(
         title = {
             Text(
-                text = "Explore",
+                text = "Explorar",
                 color = MaterialTheme.colors.topAppBarContentColor
             )
         },
