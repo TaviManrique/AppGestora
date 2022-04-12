@@ -1,26 +1,30 @@
 package com.manriquetavi.appgestor.data.repository
 
+import android.util.Log
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
-
-import com.manriquetavi.appgestor.domain.model.Response.*
+import com.manriquetavi.appgestor.domain.model.Response
 import com.manriquetavi.appgestor.domain.model.Store
 import com.manriquetavi.appgestor.domain.repository.FirebaseDataSource
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.flow.flow
+import javax.inject.Inject
 
 @ExperimentalCoroutinesApi
-class FirebaseDataSourceImpl(
-    private val queryAllStores: Query
+class FirebaseDataSourceImpl (
+    private val queryAllStores: FirebaseFirestore
 ): FirebaseDataSource {
 
-    override fun getAllStores() = callbackFlow {
-        val snapshotListener = queryAllStores.addSnapshotListener { snapshot, e ->
+    override fun getAllStores(): Flow<Response<List<Store>>> = callbackFlow {
+        val snapshotListener = queryAllStores.collection("stores").addSnapshotListener { snapshot, e ->
             val response = if (snapshot != null) {
                 val stores = snapshot.toObjects(Store::class.java)
-                Success(stores)
+                Response.Success(stores)
             } else {
-                Error(e?.message ?: e.toString())
+                Response.Error(e?.message ?: e.toString())
             }
             trySend(response).isSuccess
         }
@@ -28,4 +32,24 @@ class FirebaseDataSourceImpl(
             snapshotListener.remove()
         }
     }
+
+    override fun getSelectedStore(storeId: String): Flow<Response<Store?>> = callbackFlow {
+        val document = queryAllStores.collection("stores").document(storeId).get().addOnSuccessListener { document ->
+            val response = if(document != null) {
+                val store = document.toObject(Store::class.java)
+                Log.d("TAG", "DocumentSnapshot data: ${document.data}")
+                Response.Success(store)
+            } else {
+                Response.Error("No such document")
+            }
+            trySend(response).isSuccess
+        }
+            .addOnFailureListener { e ->
+                trySend(Response.Error(e.message ?: e.toString())).isSuccess
+            }
+        awaitClose {
+            document.isCanceled
+        }
+    }
+
 }

@@ -18,6 +18,9 @@ class Repository
     fun getAllStores(): Flow<Response<List<Store>>>
     = firebase.getAllStores()
 
+    fun getSelectedStore(storeId: String): Flow<Response<Store?>>
+    = firebase.getSelectedStore(storeId)
+
     fun isUserAuthenticatedInFirebase(): Boolean
     = firebaseAuth.isUserAuthenticatedInFirebase()
 

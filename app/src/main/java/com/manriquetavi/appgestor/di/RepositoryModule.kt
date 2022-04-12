@@ -3,6 +3,7 @@ package com.manriquetavi.appgestor.di
 import com.manriquetavi.appgestor.data.repository.Repository
 import com.manriquetavi.appgestor.domain.use_cases.UseCases
 import com.manriquetavi.appgestor.domain.use_cases.get_all_stores.GetAllStoresUseCase
+import com.manriquetavi.appgestor.domain.use_cases.get_selected_store.GetSelectedStoreUseCase
 import com.manriquetavi.appgestor.domain.use_cases.sign_in.email_password.SignInWithEmailAndPassword
 import com.manriquetavi.appgestor.domain.use_cases.sign_out_firebase.SignOutFirebase
 import dagger.Module
@@ -22,6 +23,7 @@ object RepositoryModule {
     fun provideUseCases(repository: Repository): UseCases {
         return UseCases(
             getAllStoresUseCase = GetAllStoresUseCase(repository),
+            getSelectedStoreUseCase = GetSelectedStoreUseCase(repository),
             signInWithEmailAndPassword = SignInWithEmailAndPassword(repository),
             signOutFirebase = SignOutFirebase(repository)
         )

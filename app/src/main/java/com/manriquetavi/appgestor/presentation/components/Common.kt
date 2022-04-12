@@ -35,8 +35,8 @@ fun AlertDialogScreen(
                 navController.navigate(Screen.Visit.passNameAndAddressToVisit(
                     storeName = store.value.name!!,
                     storeAddress = store.value.address!!,
-                    storeId = store.value.id!!
-                ))
+                    storeId = store.value.id!!)
+                )
                 Toast.makeText(context, "Confirm text click", Toast.LENGTH_SHORT).show()
             }) {
                 Text(

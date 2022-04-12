@@ -1,8 +1,8 @@
 package com.manriquetavi.appgestor.di
 
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.google.firebase.ktx.Firebase
@@ -26,7 +26,12 @@ object NetworkModule {
     //Firestore
     @Provides
     @Singleton
-    fun provideFirestoreDataSource(): FirebaseDataSource = FirebaseDataSourceImpl(queryAllStores = FirebaseFirestore.getInstance().collection("stores"))
+    fun provideFirestoreDataSource(
+    ): FirebaseDataSource
+    = FirebaseDataSourceImpl(
+        queryAllStores = FirebaseFirestore.getInstance()
+    )
+
 
     //FirebaseAuth
     @Provides

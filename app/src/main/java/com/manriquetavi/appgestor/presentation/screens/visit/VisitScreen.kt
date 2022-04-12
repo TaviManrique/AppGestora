@@ -12,32 +12,47 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 
 import androidx.navigation.NavHostController
 
 import com.manriquetavi.appgestor.R
+import com.manriquetavi.appgestor.domain.model.Response
 
 import com.manriquetavi.appgestor.navigation.Screen
-import kotlin.math.log
+import com.manriquetavi.appgestor.presentation.components.ProgressBar
+import com.manriquetavi.appgestor.presentation.screens.main.MainContent
+import com.manriquetavi.appgestor.presentation.screens.main.MainViewModel
+import com.manriquetavi.appgestor.util.Util
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
+@ExperimentalCoroutinesApi
 @Composable
 fun VisitScreen(
-    navController: NavHostController
+    navController: NavHostController,
+    visitViewModel: VisitViewModel = hiltViewModel()
 ) {
+    /*
     val storeName = navController.currentBackStackEntry?.arguments?.getString("storeName")
     val storeAddress = navController.currentBackStackEntry?.arguments?.getString("storeAddress")
-    val storeId = navController.currentBackStackEntry?.arguments?.getString("storeId")
+    val storeId = navController.currentBackStackEntry?.arguments?.getString("storeId")*/
+
+    val stateStoreSelected = visitViewModel.selectedStore.value
 
     Scaffold(
         topBar = { VisitTopBar(navController = navController ) }
     ) {
-        storeId?.let { storeId ->
-            ContentVisitScreen(
-                navController = navController,
-                storeName = storeName,
-                storeAddress = storeAddress,
-                storeId = storeId
-            )
+        when(stateStoreSelected) {
+            is Response.Loading -> ProgressBar()
+            is Response.Success -> stateStoreSelected.data?.id?.let { storeId ->
+                ContentVisitScreen(
+                    navController = navController,
+                    storeName = stateStoreSelected.data.name,
+                    storeAddress = stateStoreSelected.data.address,
+                    storeId = storeId
+                )
+            }
+            is Response.Error -> Util.printError(stateStoreSelected.message)
         }
     }
 }

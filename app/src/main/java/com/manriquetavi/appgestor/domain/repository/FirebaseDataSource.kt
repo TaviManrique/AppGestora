@@ -6,4 +6,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface FirebaseDataSource {
     fun getAllStores(): Flow<Response<List<Store>>>
+    fun getSelectedStore(storeId: String): Flow<Response<Store?>>
 }

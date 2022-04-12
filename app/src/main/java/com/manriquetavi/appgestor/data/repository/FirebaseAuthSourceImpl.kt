@@ -15,7 +15,7 @@ import javax.inject.Singleton
 
 @ExperimentalCoroutinesApi
 @Singleton
-class FirebaseAuthSourceImpl @Inject constructor(
+class FirebaseAuthSourceImpl (
     private val auth: FirebaseAuth
 ): FirebaseAuthSource{
 

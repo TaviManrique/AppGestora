@@ -22,7 +22,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 fun SetUpNavGraph(navController: NavHostController) {
     NavHost(
         navController = navController,
-        startDestination = Screen.Login.route
+        startDestination = Screen.Main.route
     ) {
         composable(route = Screen.Splash.route) {
             SplashScreen(navController = navController)
@@ -66,7 +66,7 @@ fun SetUpNavGraph(navController: NavHostController) {
                 },
                 navArgument("storeId") {
                     type = NavType.StringType
-                },
+                }
             )
         ) {
             VisitScreen(navController = navController)
