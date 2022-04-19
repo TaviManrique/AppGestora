@@ -30,6 +30,7 @@ fun ProductItem(
     ) {
         Box(
             modifier = Modifier
+                .fillMaxHeight()
                 .weight(0.4f)
                 .background(LightGray)
                 .border(
@@ -48,6 +49,7 @@ fun ProductItem(
         }
         Box(
             modifier = Modifier
+                .fillMaxHeight()
                 .weight(0.2f)
                 .background(LightGray)
                 .border(
@@ -66,6 +68,7 @@ fun ProductItem(
         }
         Box(
             modifier = Modifier
+                .fillMaxHeight()
                 .weight(0.2f)
                 .background(LightGray)
                 .border(
