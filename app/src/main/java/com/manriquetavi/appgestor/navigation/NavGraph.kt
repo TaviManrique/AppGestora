@@ -22,7 +22,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 fun SetUpNavGraph(navController: NavHostController) {
     NavHost(
         navController = navController,
-        startDestination = Screen.Main.route
+        startDestination = Screen.Login.route
     ) {
         composable(route = Screen.Splash.route) {
             SplashScreen(navController = navController)
@@ -58,12 +58,6 @@ fun SetUpNavGraph(navController: NavHostController) {
         composable(
             route = Screen.Visit.route,
             arguments = listOf(
-                navArgument("storeName") {
-                    type = NavType.StringType
-                },
-                navArgument("storeAddress") {
-                    type = NavType.StringType
-                },
                 navArgument("storeId") {
                     type = NavType.StringType
                 }
@@ -73,9 +67,11 @@ fun SetUpNavGraph(navController: NavHostController) {
         }
         composable(
             route = Screen.Report.route,
-            arguments = listOf(navArgument("storeId") {
+            arguments = listOf(
+                navArgument("storeId") {
                 type = NavType.StringType
-            })
+                }
+            )
         ) {
             ReportScreen(navController = navController)
         }

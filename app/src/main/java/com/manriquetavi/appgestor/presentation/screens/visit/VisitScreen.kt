@@ -1,5 +1,7 @@
 package com.manriquetavi.appgestor.presentation.screens.visit
 
+import android.util.Log
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -21,6 +23,7 @@ import com.manriquetavi.appgestor.domain.model.Response
 
 import com.manriquetavi.appgestor.navigation.Screen
 import com.manriquetavi.appgestor.presentation.components.ProgressBar
+import com.manriquetavi.appgestor.presentation.components.ToastMessage
 import com.manriquetavi.appgestor.presentation.screens.main.MainContent
 import com.manriquetavi.appgestor.presentation.screens.main.MainViewModel
 import com.manriquetavi.appgestor.util.Util

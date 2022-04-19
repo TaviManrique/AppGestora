@@ -1,5 +1,6 @@
 package com.manriquetavi.appgestor.data.repository
 
+import com.manriquetavi.appgestor.domain.model.Product
 import com.manriquetavi.appgestor.domain.model.Response
 import com.manriquetavi.appgestor.domain.model.Store
 import com.manriquetavi.appgestor.domain.repository.FirebaseAuthSource
@@ -15,12 +16,17 @@ class Repository
     private val firebaseAuth: FirebaseAuthSource
 ) {
 
+    //FireStore
     fun getAllStores(): Flow<Response<List<Store>>>
     = firebase.getAllStores()
 
     fun getSelectedStore(storeId: String): Flow<Response<Store?>>
     = firebase.getSelectedStore(storeId)
 
+    fun getAllProductsSelectedStore(storeId: String): Flow<Response<List<Product?>>>
+    = firebase.getAllProductsSelectedStore(storeId)
+
+    //Firebase Auth
     fun isUserAuthenticatedInFirebase(): Boolean
     = firebaseAuth.isUserAuthenticatedInFirebase()
 

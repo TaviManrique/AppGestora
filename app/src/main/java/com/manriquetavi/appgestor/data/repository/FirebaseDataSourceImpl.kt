@@ -2,7 +2,7 @@ package com.manriquetavi.appgestor.data.repository
 
 import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.Query
+import com.manriquetavi.appgestor.domain.model.Product
 import com.manriquetavi.appgestor.domain.model.Response
 import com.manriquetavi.appgestor.domain.model.Store
 import com.manriquetavi.appgestor.domain.repository.FirebaseDataSource
@@ -10,8 +10,6 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
-import kotlinx.coroutines.flow.flow
-import javax.inject.Inject
 
 @ExperimentalCoroutinesApi
 class FirebaseDataSourceImpl (
@@ -52,4 +50,18 @@ class FirebaseDataSourceImpl (
         }
     }
 
+    override fun getAllProductsSelectedStore(storeId: String): Flow<Response<List<Product?>>> = callbackFlow {
+        val snapshotListener = queryAllStores.collection("stores").document(storeId).collection("products").addSnapshotListener { snapshot, e ->
+            val response = if (snapshot != null) {
+                val products = snapshot.toObjects(Product::class.java)
+                Response.Success(products)
+            } else {
+                Response.Error(e?.message ?: e.toString())
+            }
+            trySend(response).isSuccess
+        }
+        awaitClose {
+            snapshotListener.remove()
+        }
+    }
 }
